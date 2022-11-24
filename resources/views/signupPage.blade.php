@@ -41,7 +41,7 @@
         <div class="p-5">
             <h1 class="mb-2">Create Account</h1>
             <p>Its easy and fast</p>
-            <form action="{{route('signupUser')}}" method="post">
+            <form action="{{route('signupUser1')}}" method="post">
                 @csrf
             <div class="mb-3">
                     <label for="exampleInputPassword1" class="form-label">User name</label>

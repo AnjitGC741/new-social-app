@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 use App\Models\home;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
+use Illuminate\Support\Facades\Auth;
 
 class first extends Controller
 {
@@ -37,22 +38,32 @@ class first extends Controller
     public function loginUser(Request $req)
     {
         $req->validate([
-            'email' => 'required',
+            'email' => 'required|email',
             'password'=>'required',
         ]);
-        $user = home::where('email','=',$req->email)->first();
-        if($user){
-            if(Hash::check($req->password,$user->password)){
-                return redirect('/dashboard');
-            }else{
-                return back()->with('fail','Password not matched');
-            }
+        // $user = home::where('email','=',$req->email)->first();
+        // if($user){
+        //     if(Hash::check($req->password,$user->password)){
+        //         return redirect('')->route('dashboard');
+        //     }else{
+        //         return back()->with('fail','Password not matched');
+        //     }
             
+        // }
+        // else{
+        //     return back()->with('fail','user not found');
+        // }
+        if(Auth::attempt($req->only('email','password'))){//form name
+            return redirect()->route('dashboard');
+            // return redirect('/dashboard');
         }
         else{
             return back()->with('fail','user not found');
         }
-       
+    }
+    public function logout(){
+        auth()->logout();
+        return redirect()->route('logout1');
     }
     
 }

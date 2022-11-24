@@ -13,8 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/',[first::class,'forLoginPage']);
-Route::get('/dashboard',[first::class,'forDashboard']);
+Route::get('/',[first::class,'forLoginPage'])->name('logout1');
+Route::get('/dashboard',[first::class,'forDashboard'])->name('dashboard')->middleware(['auth']);
 Route::get('/signup',[first::class,'forSignupPage']);
-Route::post('/signup',[first::class,'signupUser'])->name('signupUser');
+Route::post('/signup',[first::class,'signupUser'])->name('signupUser1');
 Route::post('/',[first::class,'loginUser'])->name('loginUser');
+Route::get('/logout',[first::class,'logout'])->name('logout');

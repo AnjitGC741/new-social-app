@@ -30,6 +30,7 @@
             height: 350px;
             margin: 20px 0 0 30px;
         }
+
         /* .errorMsg{
             width: 100%;
             height: 50px;
@@ -45,10 +46,13 @@
             <img src="img/img-3.png" alt="">
         </div>
         <div class="p-5">
-           
+
             @if(Session::has('fail'))
-            <div class=" pt-1 bg-danger bg-opacity-25 border border-danger rounded">
+            <!-- <div class=" pt-1 bg-danger bg-opacity-25 border border-danger rounded">
                 <p class="text-center mt-1 text-danger">{{Session::get('fail')}}</p>
+            </div> -->
+            <div class="alert text-center alert-danger" role="alert">
+            {{Session::get('fail')}}
             </div>
             @endif
             <h1 class="mb-4">Login</h1>
@@ -64,7 +68,7 @@
                     <input type="password" class="form-control" id="exampleInputPassword1" name="password">
                     <span style="color: red;"> @error('password'){{$message}}@enderror</span>
                 </div>
-                <button type="submit" class="btn btn-success">Submit</button>
+                <button type="submit" class="btn btn-success">Log In</button>
             </form>
             <p class="mt-3">No account! <a href="{{url('/signup')}}">Create one</a></p>
 
